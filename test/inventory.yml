@@ -6,3 +6,5 @@
   - target: vagrant@192.168.33.80
     private_key: ~/.bakerx/insecure_private_key
     criteria_path: test/mattermost.yml
+- local:
+    - criteria_path: test/local.yml
