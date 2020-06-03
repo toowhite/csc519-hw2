@@ -1,4 +1,6 @@
 ---
+- local:
+    - criteria_path: test/local.yml
 - ssh:
   - target: vagrant@192.168.33.10
     private_key: ~/.bakerx/insecure_private_key
