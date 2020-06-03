@@ -8,10 +8,10 @@ Clone this repo:
 git clone https://github.com/CSC-DevOps/CM-Template
 ```
 
-Create a private `HW2-DevOps` GitHub repo, change the remote url of the repo you just cloned, and push:
+Change the remote url of the repo you just cloned, and push:
 
 ```bash
-git remote set-url origin https://github.ncsu.edu/<unityid>/HW2-DevOps
+git remote set-url origin https://github.ncsu.edu/cscdevops-summer2020/HW2-<unityid>
 git push -u origin master
 ```
 
