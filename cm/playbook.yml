@@ -4,4 +4,4 @@
 
 - hosts: mattermost
   roles:
-    - ping
+    - mattermost
