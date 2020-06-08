@@ -1,0 +1,24 @@
+---
+
+- name: Install mysql 5.7
+  become: yes
+  apt:
+    name: [mysql-server, python3-pymysql]
+    state: present
+    update_cache: yes
+
+- name: Create database
+  become: yes
+  mysql_db:
+    name: mattermost
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Add db user
+  become: yes
+  mysql_user:
+    name: mmuser
+    password: 
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    state: present
+    priv: mattermost.*:ALTER,CREATE,DELETE,DROP,INDEX,INSERT,SELECT,UPDATE

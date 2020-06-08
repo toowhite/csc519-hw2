@@ -1,0 +1,84 @@
+---
+    
+- name: Download code 
+  get_url:
+    url: https://releases.mattermost.com/5.23.1/mattermost-5.23.1-linux-amd64.tar.gz
+    dest: "{{ ansible_user_dir }}/mattermost.tar.gz"
+    force: no
+
+- name: Extract code
+  become: yes
+  unarchive:
+    src: "{{ ansible_user_dir }}/mattermost.tar.gz"
+    dest: /opt/
+    remote_src: yes
+
+- name: Create data folder
+  become: yes
+  file:
+    path: /opt/mattermost/data
+    state: directory
+
+- name: Create group account
+  become: yes
+  group:
+    name: mattermost
+    state: present
+
+- name: Create user account and add to group
+  become: yes
+  user:
+    name: mattermost
+    system: yes
+    group: mattermost
+
+- name:  Change ownership and permission of the code folder
+  become: yes
+  file:
+    path: /opt/mattermost
+    state: directory
+    mode: g+w
+    recurse: yes
+    owner: mattermost
+    group: mattermost
+
+# - name: Install jq (for modifying mattermost config)
+#   become: yes
+#   apt:
+#     name: [jq]
+#     state: present
+#     update_cache: yes
+
+# - name: Copy config file to the server
+#   become: yes
+#   copy:
+#     backup: false
+#     src: "{{ role_path }}/files/config.json"
+#     dest: /opt/mattermost/config/config.json
+
+- name: Template config file 
+  become: yes
+  template:
+    src: templates/config.json.j2
+    dest: /opt/mattermost/config/config.json
+    owner: mattermost
+    group: mattermost
+
+# - name: Copy systemd unit file
+#   become: yes 
+#   copy: 
+#     src: "{{ role_path }}/files/mattermost.service"
+#     dest: /lib/systemd/system
+
+- name: Template systemd unit file
+  become: yes
+  template:
+    src: templates/mattermost.service.j2
+    dest: /lib/systemd/system
+    owner: root
+    group: root
+
+- name: Force systemd to reread config
+  become: yes
+  systemd:
+    daemon_reload: yes
