@@ -34,8 +34,8 @@ async function run(file, inventory) {
 
     // the paths should be from root of cm directory
     // Transforming path of the files in host to the path in VM's shared folder
-    let filePath = '/bakerx/'+ file;
-    let inventoryPath = '/bakerx/' +inventory;
+    let filePath = '/bakerx/cm/'+ file;
+    let inventoryPath = '/bakerx/cm/' +inventory;
 
     console.log(chalk.blueBright('Running ansible script...'));
     let result = sshSync(`/bakerx/cm/run-ansible.sh ${filePath} ${inventoryPath}`, 'vagrant@192.168.33.10');
