@@ -78,7 +78,3 @@
     owner: root
     group: root
 
-- name: Force systemd to reread config
-  become: yes
-  systemd:
-    daemon_reload: yes

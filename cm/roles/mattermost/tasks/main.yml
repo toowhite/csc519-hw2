@@ -13,6 +13,11 @@
 - name: Setup nginx
   include: nginx.yml
 
+- name: Force systemd to reread config
+  become: yes
+  systemd:
+    daemon_reload: yes
+
 - name: Ensure mysql running
   become: yes
   systemd: name=mysql state=started
