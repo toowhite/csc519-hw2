@@ -1,0 +1,5 @@
+---
+- name: Add team
+  become: yes
+  command: 
+    cmd: /opt/mattermost/bin/mattermost team create --name "csc519" --display_name "CSC 519 HW 2"
