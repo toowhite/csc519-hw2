@@ -12,8 +12,8 @@ Modify Line 21 to `ansible-playbook $PLAYBOOK -i $INVENTORY --ask-vault-pass`
 The password is the one TA requires.
 
 ### Implementation
-- Extra requiremnts implemented are 
- 1) add team automatically using mattermost cli 
- 2) setting up email notification
+Extra requiremnts implemented are 
+- add team automatically using mattermost cli 
+- setting up email notification
 
 
