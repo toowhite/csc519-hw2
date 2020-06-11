@@ -13,7 +13,7 @@ The password is the one TA requires.
 
 ### Implementation
 Extra requiremnts implemented are 
-- add team automatically using mattermost cli 
-- setting up email notification
+- Adding team automatically using mattermost cli 
+- Setting up email notification
 
 
