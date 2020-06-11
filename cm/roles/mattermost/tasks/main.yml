@@ -1,17 +1,12 @@
 ---
 
-# - become: yes
-#   debug:
-#     var: ansible_user_dir
+# - include_vars: file=vars/vars.yml
 
-- include: mysql.yml
-- include: mattermost.yml
-- include: nginx.yml
+# - debug: "msg={{ smtp_password }}"
 
-- name: Force systemd to reread config
-  become: yes
-  systemd:
-    daemon_reload: yes
+- import_tasks: mysql.yml
+- import_tasks: mattermost.yml
+- import_tasks: nginx.yml
 
 - name: Ensure mysql running
   become: yes
@@ -19,6 +14,6 @@
 
 - name: Ensure mattermost running
   become: yes
-  systemd: name=mattermost state=started
+  systemd: name=mattermost state=started daemon_reload=yes
 
-- include: extra.yml
+- import_tasks: extra.yml
