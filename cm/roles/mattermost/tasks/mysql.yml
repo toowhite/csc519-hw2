@@ -18,7 +18,7 @@
   become: yes
   mysql_user:
     name: mmuser
-    password: 
+    password: "{{ mattermost_mysql_user_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
     state: present
     priv: mattermost.*:ALTER,CREATE,DELETE,DROP,INDEX,INSERT,SELECT,UPDATE

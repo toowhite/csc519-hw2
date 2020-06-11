@@ -1,6 +1,6 @@
 ---
 
-# - include_vars: file=vars/vars.yml
+- include_vars: file=vars/vars.yml
 
 # - debug: "msg={{ smtp_password }}"
 
